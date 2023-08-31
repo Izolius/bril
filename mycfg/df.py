@@ -59,7 +59,7 @@ def df() -> None:
     with open(sys.argv[1], encoding = 'utf-8') as file:
         json_program = json.load(file)
         for function in json_program['functions']:
-            cfg = Cfg(function['instrs'])
+            cfg = Cfg(body=function['instrs'])
             in_defs, out_defs = reaching_definitions(cfg)
             for label in cfg.get_all_labels():
                 print(f"name: {label}, in: {in_defs[label].keys()}, out: {out_defs[label].keys()}\n")
